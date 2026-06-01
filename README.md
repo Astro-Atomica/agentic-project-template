@@ -65,12 +65,36 @@ Do not create parallel platform-specific instruction files such as `CLAUDE.md`, 
 
 ## Getting Started
 
-1. Use this repository as a template or clone it.
-2. Point your coding agent at the repository root.
-3. Send the first prompt, such as `hi`, and ask the agent to customize the scaffold for the new project.
-4. Work with the agent through [agents/workflows/startup.md](agents/workflows/startup.md) to choose profiles, update docs, and remove scaffold pieces you do not need.
-5. Review the customized project.
-6. Create and commit the customized project in your new repository.
+1. Clone this template into a new project folder.
+2. Remove the template Git history so the new project gets its own clean first commit.
+3. Point your coding agent at the repository root.
+4. Send the first prompt, such as `hi`, and ask the agent to customize the scaffold for the new project.
+5. Work with the agent through [agents/workflows/startup.md](agents/workflows/startup.md) to choose profiles, update docs, and remove scaffold pieces you do not need.
+6. Review the customized project.
+7. Create and push the customized project to its new repository.
+
+### Fresh Repo Workflow
+
+Use this when starting a new project from the template:
+
+```sh
+git clone git@github.com:Astro-Atomica/agentic-project-template.git new-project
+cd new-project
+rm -rf .git
+
+# Run the startup/customization workflow here.
+
+git init
+git add .
+git commit -m "Initial project scaffold"
+git branch -M main
+git remote add origin git@github.com:Astro-Atomica/new-project.git
+git push -u origin main
+```
+
+Replace `new-project` with the local folder and target GitHub repository name.
+
+This workflow intentionally removes the template repository history. The new project starts with one clear project-specific scaffold commit, and there is no risk of accidentally pushing changes back to the template repo.
 
 ## Starting With An Agent
 
