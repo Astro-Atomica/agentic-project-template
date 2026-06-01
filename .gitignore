@@ -1,0 +1,62 @@
+# Root local underscore folders
+/_*/
+
+# Generated output
+dist/
+build/
+out/
+coverage/
+
+# Dependency folders
+node_modules/
+packages/*/node_modules/
+workspace/node_modules/
+
+# Caches
+.cache/
+.parcel-cache/
+.turbo/
+.vite/
+.next/
+.nuxt/
+.svelte-kit/
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# Editor and tool local state
+.vscode/
+.idea/
+.obsidian/
+.claude/
+.cursor/
+.vs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Game/app generated folders
+.godot/
+bin/
+obj/
+DerivedData/
+
+# ML/data artifacts
+data/
+datasets/
+models/
+checkpoints/
+runs/
