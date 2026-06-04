@@ -49,8 +49,6 @@ This repository is an agentic project scaffold. It is designed to be copied into
 
 ## Working Style
 
-- Make small, reviewable changes.
-- Preserve user work; do not revert unrelated changes.
 - Preserve requested features. When a feature request or product requirement may outlive the current context, record it in `_private/feature-requests.md` unless it belongs in tracked docs.
 - Keep explanations concise and grounded in files changed.
 - When adding project-specific rules, place durable shared guidance under `agents/` and local implementation notes under `workspace/`.
