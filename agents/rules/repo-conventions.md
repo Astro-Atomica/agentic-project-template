@@ -29,6 +29,17 @@ The root should contain entrypoints and repo-level infrastructure:
 
 Avoid adding new top-level folders unless they represent a durable repo-level concept.
 
+## Document Directory Hygiene
+
+These guidelines apply to human-facing document directories, not source-code organization.
+
+- About 20 human-facing files in one directory is the high side.
+- When 3+ files share a clear theme, consider a subdirectory.
+- When only 2 files share a prefix, keep them together and use the prefix; do not create a directory just for two files.
+- If a Markdown file grows past 500 lines, split it at `##` sections into topic files and leave a `README.md` or index behind.
+- Prefer concise path names because path length limits still matter.
+- No strict limits; use judgment.
+
 ## Managed Folders
 
 Managed folders are tracked by Git and form the public project surface:
