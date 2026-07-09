@@ -10,6 +10,10 @@ Use this after a user points an agent at this scaffold and sends the first promp
 6. Check `workspace/AGENTS.md` for project-specific instructions.
 7. Delete unnecessary local clutter when it is clearly safe: OS junk, generated scratch files, stale tool output, or agent-created temp files in ignored locations.
 8. Do not delete tracked source, user work, unknown untracked files, or project artifacts unless the user explicitly approves.
+
+Never delete `_private/` content automatically, and preserve review/process
+records until their ownership and retention state are known.
+
 9. Ask whether legacy support is required. If yes, record the supported version floor or support time window before adding compatibility paths.
 10. Ask whether agents should put their author role in commit messages or commit metadata. Record the chosen project pattern before the first agent-authored commit. If the user says no, treat it as a hard no and do not add agent role attribution to commit messages or metadata.
 11. Identify the active profile, if any, under `templates/profiles/`.

@@ -91,7 +91,7 @@ Reasoning: code and config change for different reasons. Keeping them distinct m
 2. Do not commit email addresses, street addresses, phone numbers, SSNs, account numbers, or any other personal or private information without explicit approval.
 3. Treat secrets in comments, deleted files, old commits, logs, generated output, and review artifacts as real leaks. Once committed, sensitive data is buried in Git history and can be very difficult to remove or hide.
 4. Treat accidentally committed secrets as very high risk in public, shared, or open source repositories. Committed secrets should be assumed likely to become compromised secrets.
-5. Repair Git history after any accidentally committed secret or private data. A follow-up commit that deletes the value is not enough because the secret remains recoverable from history.
+5. Treat a committed secret as both an active credential incident and an information-exposure incident. Revoke or rotate it and remove public evidence immediately and in parallel; then audit, coordinate, rewrite reachable history, and verify both containment paths.
 6. Keep private notes, raw tool outputs, logs, exports, caches, and review artifacts in ignored underscore folders.
 
 ## TDD First
@@ -136,35 +136,64 @@ This is a greenfield project by default. Legacy support must be scoped and clear
 
 ## Named Event Handlers And Callbacks
 
-Event handlers, `setTimeout` / `setInterval` callbacks, `requestAnimationFrame` callbacks, and listener functions must be defined as named functions at module or component scope, not inline anonymous functions.
+Callbacks containing behavior must be named and defined at module scope when
+practical, or at stable component scope when a framework lifecycle requires it.
+Pass dependencies explicitly instead of relying on hidden closure capture.
 
-Inline arrows are acceptable only as a thin adapter when closure variables must be captured at the call site.
+Inline anonymous functions are acceptable only as trivial adapters that
+immediately delegate to a named function. They must not contain the callback's
+behavior.
 
-1. Delegation and reuse: one named handler can be attached to multiple targets without duplicating the function body.
-2. Symmetry with `removeEventListener`: the same reference must be passed to add and remove. Anonymous functions break this; named handlers make lifecycle cleanup mechanical and obvious.
-3. Testability: a named handler can be imported and unit-tested with a synthetic event object. Logic trapped inside an anonymous closure inside an effect or setup block cannot.
-4. Stack traces and DevTools: named functions appear by name in call stacks, profiling output, and DevTools listener panels. Anonymous arrows show up as `(anonymous)`.
-5. Code review rule: flag any `addEventListener`, `on:xxx={...}`, `setTimeout`, `setInterval`, or `requestAnimationFrame` call whose second argument is a non-trivial inline function. Push for extraction to a named function.
-6. Lambda wrap exception: when the callback genuinely needs a variable captured at schedule time, such as a monotonic round id, write the handler as `function handleFoo(roundId) { ... }` and pass `() => handleFoo(mySnapId)` at the call site. The inline arrow is a thin closure adapter, not a handler body.
+This is a deliberate agent-reliability rule. In larger agent-authored apps,
+anonymous closures and deeply nested callback structures have repeatedly led to
+hidden dependencies, duplicated behavior, cleanup mistakes, retained state,
+and code that is difficult to test or reuse. The named-callback default applies
+positive pressure toward flatter files, functional boundaries, explicit inputs,
+and observable lifecycles.
+
+1. Flat control flow: named callbacks keep setup and orchestration readable instead of nesting behavior inside registrations, effects, timers, or animation loops.
+2. Explicit dependencies: inputs and captured values should be visible in parameters or an explicit context rather than inherited accidentally from a closure.
+3. Testability: meaningful callback behavior should be importable or separable into a unit that can be tested with explicit inputs.
+4. Reuse and DRY: one named callback or underlying function can serve multiple callers without copying the implementation.
+5. Stable identity and cleanup: the same function reference can be passed to registration and removal APIs, making lifecycle symmetry mechanical and reviewable.
+6. Diagnostics: named functions appear clearly in stack traces, profiles, logs, and developer tools.
+7. Leak prevention: naming alone does not release resources. Every listener, timer, animation frame, subscription, observer, or external callback registration must also have explicit symmetric teardown or cancellation. Any intentionally captured values must be bounded and auditable.
+8. Code review rule: flag non-trivial inline callbacks and callbacks with hidden closure dependencies. Extract their behavior into a named function and verify the cleanup path.
+9. Thin-adapter exception: when a value genuinely must be captured at registration or schedule time, pass it through a minimal adapter such as `() => handleSnapTimeout(snapId)`. The adapter delegates; it does not own behavior.
 
 Example:
 
 ```js
-// At component scope: named, reusable, testable.
-function _onNodeTransitionStart(ev) { /* ... */ }
-function _onNodeTransitionEnd(ev) { /* ... */ }
-function _onSnapQuietTimeout(snapId) { /* ... */ }
+// At module or stable component scope: named, reusable, testable.
+function handleNodeTransitionStart(event) { /* ... */ }
+function handleNodeTransitionEnd(event) { /* ... */ }
+function handleSnapQuietTimeout(snapId) { /* ... */ }
 
-// At assignment: bare reference, or thin lambda adapter only.
-el.addEventListener("transitionstart", _onNodeTransitionStart);
-el.addEventListener("transitionend", _onNodeTransitionEnd);
-_snapQuietTimer = setTimeout(() => _onSnapQuietTimeout(mySnapId), SNAP_EDGE_TAIL_MS);
+function attachNodeListeners(target) {
+  target.addEventListener("transitionstart", handleNodeTransitionStart);
+  target.addEventListener("transitionend", handleNodeTransitionEnd);
+}
+
+function detachNodeListeners(target) {
+  target.removeEventListener("transitionstart", handleNodeTransitionStart);
+  target.removeEventListener("transitionend", handleNodeTransitionEnd);
+}
+
+attachNodeListeners(element);
+const snapQuietTimer = setTimeout(
+  () => handleSnapQuietTimeout(currentSnapId),
+  SNAP_EDGE_TAIL_MS,
+);
+
+// Teardown uses the same listener identities and cancels scheduled work.
+detachNodeListeners(element);
+clearTimeout(snapQuietTimer);
 ```
 
 ## File Length
 
-1. Keep files a reasonable length and under 800 lines.
-2. Use or create a local tool to keep files under 1000 lines.
-3. Error over 1000 lines.
-4. Warn over 500 lines.
+1. Warn when a file exceeds 500 lines.
+2. Require a cohesion review when a file exceeds 800 lines.
+3. Do not automatically fail a file for exceeding 1000 lines.
+4. Generated files, declarative data, and demonstrably cohesive modules may be exempt from length warnings and reviews.
 5. Treat file length as a forcing function for better coding patterns: modular code, separation of concerns, reusable units, object-oriented structure, mixins, or other appropriate decomposition.

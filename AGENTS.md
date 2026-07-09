@@ -52,6 +52,7 @@ This repository is an agentic project scaffold. It is designed to be copied into
 - Preserve requested features. When a feature request or product requirement may outlive the current context, record it in `_private/feature-requests.md` unless it belongs in tracked docs.
 - Keep explanations concise and grounded in files changed.
 - When adding project-specific rules, place durable shared guidance under `agents/` and local implementation notes under `workspace/`.
+- When a user makes a design language request, update and maintain `agents/DESIGN.md` and supporting design-system docs under `agents/design/`; do not leave durable design intent only in chat or component code.
 - For code reviews, use `_code_review/` for scratch notes and follow [agents/workflows/code-review.md](agents/workflows/code-review.md).
 - Track technical debt discovered while working on code in `_code_review/`, even outside formal code reviews. Document issues that should be tracked but not tackled in the current task.
 - Put logs in `_logs/`, ad hoc exports in `_exports/`, and raw tool outputs in `_tool_results/`.

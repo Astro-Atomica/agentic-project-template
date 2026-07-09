@@ -16,17 +16,20 @@ CSS should make layout and styling predictable, inspectable, and easy to change 
 
 Use native CSS nesting to keep related selectors together and make component scope obvious.
 
+Native CSS nesting does not support Sass-style selector concatenation. Write
+the complete class name when nesting BEM-like element or modifier selectors.
+
 Write:
 
 ```css
 .component {
-  &__header { /* ... */ }
-  &__actions { /* ... */ }
+  & .component__header { /* ... */ }
+  & .component__actions { /* ... */ }
 
   & .child-list {
     transition: opacity 140ms ease-out;
 
-    &--is-updating {
+    &.child-list--is-updating {
       opacity: 0;
       transition: none;
     }
@@ -34,14 +37,8 @@ Write:
 }
 ```
 
-Not:
-
-```css
-.component__header { /* ... */ }
-.component__actions { /* ... */ }
-.component .child-list { /* ... */ }
-.component--is-updating .child-list { /* ... */ }
-```
+Do not append BEM element or modifier suffixes directly to the nesting
+selector. Native CSS nesting does not perform string concatenation.
 
 Good CSS is a balancing act between building a modular zero-semantic style/layout framework and using semantics to keep CSS readable and meaningful.
 
@@ -77,7 +74,7 @@ Good:
 
 ```css
 .component {
-  &__actions {}
+  & .component__actions {}
   & button.action {}
 }
 ```
@@ -156,7 +153,7 @@ Example:
 
 ```css
 .component {
-  &--is-busy &__content {
+  &.component--is-busy .component__content {
     opacity: 0.6;
     pointer-events: none;
   }
@@ -166,7 +163,7 @@ Example:
   }
 
   @media (prefers-reduced-motion: reduce) {
-    &__content {
+    & .component__content {
       transition: none;
     }
   }

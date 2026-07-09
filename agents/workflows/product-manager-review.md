@@ -21,9 +21,11 @@ A PM review focuses on features, functionality, and fully integrated user flows.
 4. Walk every primary user flow end to end from the user's point of view.
 5. Check integration points: navigation, empty states, loading states, error states, permissions, persistence, undo/redo, refresh, and cross-device or responsive behavior when relevant.
 6. Visually validate all UX requirements using the best available observation path: direct app inspection, screenshot, rendered document, app preview, video, artifact inspection, or browser tooling when applicable.
-7. Record missing or deferred feature work in `_private/feature-requests.md` when it should survive the current thread.
-8. Record technical debt separately in `_code_review/` when it should be tracked but not fixed in the current task.
-9. Report product findings first, ordered by user impact.
+7. For visual or design-language work, compare the UI against `agents/DESIGN.md` and supporting docs under `agents/design/`.
+8. Check whether new design decisions, exceptions, or reusable patterns were added back to the design language or design-system docs.
+9. Record missing or deferred feature work in `_private/feature-requests.md` when it should survive the current thread.
+10. Record technical debt separately in `_code_review/` when it should be tracked but not fixed in the current task.
+11. Report product findings first, ordered by user impact.
 
 ## Findings To Flag
 
@@ -34,11 +36,14 @@ A PM review focuses on features, functionality, and fully integrated user flows.
 5. Empty, loading, disabled, permission, and error states are missing or inconsistent.
 6. Copy, labels, controls, or layout contradict the requested product behavior.
 7. A feature request appears to have been dropped during context compaction, scope shifts, or thread changes.
+8. A design-language request changed the UI but did not update `agents/DESIGN.md` or supporting design-system docs.
+9. Fonts, colors, spacing, motion, or component choices are hard-coded repeatedly instead of using documented semantic roles, tokens, or reusable patterns.
 
 ## Output Shape
 
 1. Findings first, with feature or flow references.
 2. Missing feature requests or lost requirements.
-3. Visual validation performed.
-4. User flows exercised.
-5. Residual product risks and follow-ups.
+3. Design-language or design-system documentation gaps.
+4. Visual validation performed.
+5. User flows exercised.
+6. Residual product risks and follow-ups.
