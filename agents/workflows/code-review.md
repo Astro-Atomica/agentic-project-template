@@ -43,7 +43,9 @@ Avoid turning reviews into style-only rewrites unless style creates real mainten
 4. Put scratch notes and command output summaries in `_code_review/`.
 5. Keep a technical debt list in `_code_review/` for issues that should be documented and tracked but not tackled in the current task.
 6. Report only polished findings to the user or PR.
-7. Keep final findings actionable, specific, and tied to files/lines when possible.
+7. Run the privacy preflight against the relevant surfaces: `working` and `staged` for local review, `push` for unpublished commits, and the explicit history/ref modes when publication history or backups are in scope.
+8. Store optional sanitized JSON reports only under `_code_review/` or `_tool_results/`. Never paste a discovered secret or raw private line into findings.
+9. Keep final findings actionable, specific, and tied to files/lines when possible.
 
 ## Technical Debt Tracking
 

@@ -1,0 +1,29 @@
+name: Privacy preflight
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  privacy-preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run privacy preflight tests
+        run: python -m unittest discover -s agents/tools/tests -v
+
+      - name: Audit pull request commits
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: python agents/tools/privacy_preflight.py push --upstream "origin/$BASE_REF"

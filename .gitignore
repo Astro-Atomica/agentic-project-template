@@ -6,11 +6,16 @@ dist/
 build/
 out/
 coverage/
+target/
+TestResults/
 
 # Dependency folders
 node_modules/
 packages/*/node_modules/
 workspace/node_modules/
+vendor/
+.venv/
+venv/
 
 # Caches
 .cache/
@@ -21,8 +26,25 @@ workspace/node_modules/
 .nuxt/
 .svelte-kit/
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
 __pycache__/
 *.pyc
+
+# Browser automation and captured trust state (at any depth)
+.playwright-cli/
+playwright-report/
+blob-report/
+test-results/
+screenshots/
+traces/
+videos/
+*.trace.zip
+*.har
+*.webm
+*storage-state*.json
+*auth-state*.json
+*cookies*.json
 
 # Editor and tool local state
 .vscode/

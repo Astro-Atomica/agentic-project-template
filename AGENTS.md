@@ -9,6 +9,9 @@ This repository is an agentic project scaffold. It is designed to be copied into
 3. Read [agents/README.md](agents/README.md).
 4. Check for project-specific guidance in [workspace/AGENTS.md](workspace/AGENTS.md).
 5. Inspect the current project profile under [templates/profiles](templates/profiles), if one has been selected.
+6. Read and customize [agents/privacy-policy.json](agents/privacy-policy.json) before the first project commit.
+
+For the chosen client, consult the dated [agent compatibility notes](agents/rules/agent-compatibility.md). Native entrypoint discovery varies by client, version, and session settings; verify that the linked shared guidance was actually read.
 
 ## Core Rules
 
@@ -20,6 +23,8 @@ This repository is an agentic project scaffold. It is designed to be copied into
 - Prefer editing existing docs over creating new top-level folders.
 - Keep the repo root small and predictable.
 - If a tool creates local clutter, add it to `.gitignore` rather than committing it.
+- Run the privacy preflight on staged content before committing and on unpublished commits before pushing.
+- Treat browser captures, local-app state, cookies, storage state, traces, screenshots, videos, and exports as private trust-boundary material unless intentionally reviewed and approved for publication.
 - Use project profiles as additive starting points, not mandatory structure.
 - No legacy code and no legacy fallbacks unless legacy support has been explicitly opted into. On project startup, ask for the supported version floor or time window before adding compatibility paths.
 

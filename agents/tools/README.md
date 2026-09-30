@@ -22,3 +22,17 @@ agents/tools/
     README.md
     scripts-or-source-files
 ```
+
+## Privacy Preflight
+
+`privacy_preflight.py` is a dependency-free Python 3.10+ commit and publication gate configured by `agents/privacy-policy.json`. See the root [prerequisites](../../README.md#prerequisites) for Git requirements, Python launchers, and tested environments. History modes inspect full commit messages as well as author/committer identities and file content.
+
+```text
+python -m unittest discover -s agents/tools/tests -v
+python agents/tools/privacy_preflight.py working
+python agents/tools/privacy_preflight.py staged
+python agents/tools/privacy_preflight.py push
+python agents/tools/privacy_preflight.py install-hooks
+```
+
+Hook installation is explicit and refuses to overwrite unrelated hooks. See [Privacy And Publication Safety](../rules/privacy-and-publication.md) for history, remote-ref, local-ref, local-policy, and report commands.

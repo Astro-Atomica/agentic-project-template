@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "identity": {
+    "allowedAuthorNames": [
+      "Project Contributor",
+      "Project Automation"
+    ],
+    "allowedAuthorNamePatterns": [
+      "^[^\\x00-\\x1f<>@]{2,80}$",
+      "^[A-Za-z0-9][A-Za-z0-9._-]*\\[bot\\]$"
+    ],
+    "allowedEmailPatterns": [
+      "^jdavid\\.net@gmail\\.com$",
+      "^[A-Za-z0-9._%+-]+@users\\.noreply\\.github\\.com$",
+      "^[A-Za-z0-9._%+-]+@example\\.(?:com|org|net)$",
+      "^git@github\\.com$"
+    ],
+    "disallowedPersonalIdentifiers": [
+      "Example Personal Name",
+      "example-local-user"
+    ],
+    "disallowedFixtureNames": [
+      "Careless Demo User",
+      "Definitely Real Customer"
+    ]
+  },
+  "secrets": {
+    "allowedPlaceholderSecrets": [
+      {
+        "pathPatterns": [
+          "**/.env.example",
+          "**/*.env.example",
+          "**/fixtures/**",
+          "**/examples/**"
+        ],
+        "valuePatterns": [
+          "^replace-me(?:-[a-z0-9-]+)?$",
+          "^example(?:-[a-z0-9-]+)+$",
+          "^<[-A-Z0-9_]+>$"
+        ]
+      }
+    ],
+    "allowedCredentialFilePatterns": [
+      "**/.env.example",
+      "**/*.env.example"
+    ],
+    "credentialFilePatterns": []
+  },
+  "paths": {
+    "sensitivePatterns": [
+      {
+        "id": "windows-user-home",
+        "pattern": "(?i)\\b[A-Z]:\\\\Users\\\\(?!<name>\\\\|username\\\\|user\\\\|example\\\\)[^\\\\\\s]+\\\\"
+      },
+      {
+        "id": "posix-user-home",
+        "pattern": "/(?:Users|home)/(?!<name>/|username/|user/|example/)[^/\\s]+/"
+      },
+      {
+        "id": "windows-private-media-root",
+        "pattern": "(?i)\\b[A-Z]:\\\\(?:Private|Media|Photos|Videos|Recordings)\\\\"
+      },
+      {
+        "id": "posix-private-media-root",
+        "pattern": "/(?:Volumes|mnt)/(?:private|media|photos|videos|recordings)/"
+      },
+      {
+        "id": "account-specific-app-data",
+        "pattern": "(?i)(?:AppData[/\\\\](?:Local|Roaming)|Library/Application Support|\\.ssh[/\\\\]|\\.aws[/\\\\]|\\.config/gcloud/)"
+      }
+    ]
+  },
+  "artifacts": {
+    "patterns": [
+      { "id": "playwright-cli", "pattern": "**/.playwright-cli/**" },
+      { "id": "playwright-report", "pattern": "**/playwright-report/**" },
+      { "id": "browser-test-results", "pattern": "**/test-results/**" },
+      { "id": "browser-trace", "pattern": "**/*trace*.zip" },
+      { "id": "browser-network-capture", "pattern": "**/*.har" },
+      { "id": "screenshot-folder", "pattern": "**/screenshots/**" },
+      { "id": "screenshot-file", "pattern": "**/*screenshot*.png" },
+      { "id": "video-folder", "pattern": "**/videos/**" },
+      { "id": "captured-video", "pattern": "**/*.webm" },
+      { "id": "real-video", "pattern": "**/*.mp4" },
+      { "id": "real-video", "pattern": "**/*.mov" },
+      { "id": "real-audio", "pattern": "**/*.wav" },
+      { "id": "real-audio", "pattern": "**/*.mp3" },
+      { "id": "real-audio", "pattern": "**/*.m4a" },
+      { "id": "transcript", "pattern": "**/transcripts/**" },
+      { "id": "transcript", "pattern": "**/*.srt" },
+      { "id": "transcript", "pattern": "**/*.vtt" },
+      { "id": "face-profile-image", "pattern": "**/*avatar*.png" },
+      { "id": "face-profile-image", "pattern": "**/*profile*.jpg" },
+      { "id": "face-profile-image", "pattern": "**/*headshot*.jpg" },
+      { "id": "user-export", "pattern": "**/exports/**" },
+      { "id": "user-export", "pattern": "**/*export*.csv" },
+      { "id": "log", "pattern": "**/*.log" },
+      { "id": "dependency", "pattern": "**/node_modules/**" },
+      { "id": "dependency", "pattern": "**/vendor/**" },
+      { "id": "dependency", "pattern": "**/.venv/**" },
+      { "id": "cache", "pattern": "**/.cache/**" },
+      { "id": "cache", "pattern": "**/_cache/**" },
+      { "id": "build-output", "pattern": "**/dist/**" },
+      { "id": "build-output", "pattern": "**/build/**" },
+      { "id": "build-output", "pattern": "**/_build/**" },
+      { "id": "local-review-output", "pattern": "**/_code_review/**" },
+      { "id": "local-tool-output", "pattern": "**/_tool_results/**" },
+      { "id": "local-private-state", "pattern": "**/_private/**" }
+    ]
+  },
+  "localPolicyFiles": [
+    "_private/privacy-policy.local.json"
+  ],
+  "scan": {
+    "maxTextBytes": 1048576,
+    "ruleDefinitionPaths": [
+      "agents/privacy-policy.json",
+      "agents/tools/privacy_preflight.py"
+    ]
+  }
+}

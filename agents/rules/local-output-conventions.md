@@ -19,6 +19,7 @@ Use these ignored folders to keep agent and tool byproducts predictable.
 - Promote durable knowledge into `docs/`, `agents/`, `workspace/`, or `packages/`.
 - Keep raw byproducts local unless the user explicitly asks to preserve or publish them.
 - If a generated artifact becomes part of the source of truth, move it to a visible tracked folder and explain why.
+- Keep browser profiles, cookies, storage state, Playwright captures, screenshots, traces, videos, and signed-in local-app exports local. Review and sanitize any artifact explicitly promoted to source.
 
 ## Choosing A Folder
 

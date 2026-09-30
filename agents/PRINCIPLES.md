@@ -93,6 +93,8 @@ Reasoning: code and config change for different reasons. Keeping them distinct m
 4. Treat accidentally committed secrets as very high risk in public, shared, or open source repositories. Committed secrets should be assumed likely to become compromised secrets.
 5. Treat a committed secret as both an active credential incident and an information-exposure incident. Revoke or rotate it and remove public evidence immediately and in parallel; then audit, coordinate, rewrite reachable history, and verify both containment paths.
 6. Keep private notes, raw tool outputs, logs, exports, caches, and review artifacts in ignored underscore folders.
+7. Use the configured privacy preflight as a commit and publication gate. Run staged, push-range, history, and auxiliary-ref modes according to `agents/rules/privacy-and-publication.md`.
+8. Do not treat a new `.gitignore` rule as remediation for content already tracked, committed, or retained by another ref.
 
 ## TDD First
 

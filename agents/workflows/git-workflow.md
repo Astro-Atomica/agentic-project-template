@@ -9,6 +9,11 @@ Use this workflow to decide how agents should branch, stage, commit, merge, and 
 5. Keep changes small enough to review, test, and revert.
 6. Use the commit message templates in `agents/commit-templates/` when the project has selected one.
 7. Respect the startup decision about agent author-role attribution. If the user said no, that is a hard no.
+8. Run `python agents/tools/privacy_preflight.py staged` as the commit gate.
+9. Run `python agents/tools/privacy_preflight.py push` before pushing unpublished commits. Supply `--upstream` when the branch has no configured upstream comparison.
+10. Before first public publication, a mirror, or a bundle, fetch and audit reachable remote history plus non-branch local refs using the commands in `agents/rules/privacy-and-publication.md`.
+
+`.gitignore` does not remove tracked files, historical blobs, commit metadata, or auxiliary refs. Fix those Git objects deliberately rather than treating a new ignore rule as remediation.
 
 ## Integration Branch Pattern
 
