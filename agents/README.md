@@ -10,7 +10,7 @@ Shared operating context for coding agents and humans working with them.
 - [commit-templates](commit-templates) - reusable commit message templates and commit metadata patterns
 - [design](design) - supporting design guidance and artifacts
 - [rules](rules) - durable repo conventions and safety rules
-- [model routing](rules/model-routing.md) - empty tables for project users to record models and task-fit estimates over time
+- [model routing](rules/model-routing.md) - dated model catalog, a [published pricing cache](rules/model-pricing-cache.md), and empty profile/route tables, with a [routing workflow](workflows/model-routing.md) for learning preferences gradually
 - [privacy-policy.json](privacy-policy.json) - project publication allowlists and sensitive-pattern policy
 - [workflows](workflows) - repeatable task procedures
 - [skills](skills) - reusable capability notes and native skill setup guidance

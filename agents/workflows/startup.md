@@ -6,7 +6,7 @@ Use this once when adapting the scaffold into a new project. Ordinary tasks use 
 
 1. Read the human README, inspect Git status, and check existing workspace guidance and project decisions. Infer choices already recorded; ask only for missing decisions needed to adapt the project.
 2. Establish the product goal, stack, supported runtime/platform floor, and useful local verification commands. Use profiles as optional starting points and retain only relevant scaffold material.
-3. Update the README and workspace instructions with actual project commands and decisions. Existing branch, author-attribution, and disclosure conventions apply; introduce optional policies only when the project needs them.
+3. Update the README and workspace instructions with actual project commands and decisions. For subagents or specialist reviews, carry forward known preferences and use the [model routing workflow](model-routing.md) to learn gradually during work; do not require a routing questionnaire at startup. Existing branch, author-attribution, and disclosure conventions apply; introduce optional policies only when the project needs them.
 4. Choose a public Git identity and customize [the publication policy](../privacy-policy.json). Keep private detection identifiers in ignored local policy or protected environment configuration. See [privacy setup](../rules/privacy-and-publication.md#project-setup).
 5. Verify the customized scaffold and run the working privacy preflight. Summarize choices, checks, and unresolved requirements. Commit or publish only within the user's authorization.
 
