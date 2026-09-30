@@ -1,5 +1,9 @@
 # Firefox Rules
 
-Use this file for Firefox-specific browser quirks, requirements, constraints, web platform behavior, DevTools behavior, extension runtime behavior, and compatibility notes.
+Customize agent behavior for this project's Firefox browser or extension work. No project-specific choices are set in this stub.
 
-Put general programming guidance in `agents/PRINCIPLES.md`, `agents/code/README.md`, or the most general file you can. Placing it in a platform-specific file limits it to only that platform.
+Replace the prompts below with the rules that apply:
+
+- Supported browser versions and extension targets.
+- Browser APIs, permissions, packaging, and compatibility constraints.
+- Browser, extension, and representative-device checks.

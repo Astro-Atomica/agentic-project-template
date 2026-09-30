@@ -1,5 +1,9 @@
 # Safari Rules
 
-Use this file for Safari-specific browser quirks, requirements, constraints, WebKit behavior, extension behavior, iOS/macOS differences, and compatibility notes.
+Customize agent behavior for this project's Safari browser or extension work. No project-specific choices are set in this stub.
 
-Put general programming guidance in `agents/PRINCIPLES.md`, `agents/code/README.md`, or the most general file you can. Placing it in a platform-specific file limits it to only that platform.
+Replace the prompts below with the rules that apply:
+
+- Supported Safari and operating-system versions.
+- WebKit behavior, permissions, extensions, and device differences.
+- Browser, extension, and representative-device checks.

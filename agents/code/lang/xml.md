@@ -1,5 +1,9 @@
 # XML Rules
 
-Use this file for XML-specific schema, namespace, formatting, parsing, and validation rules.
+Customize agent behavior for this project's XML documents and parsers. No project-specific choices are set in this stub.
 
-Put general programming guidance in `agents/PRINCIPLES.md`, `agents/code/README.md`, or the most general file you can. Placing it in a language- or pattern-specific file limits it to only that language or pattern.
+Replace the prompts below with the rules that apply:
+
+- Schemas, namespaces, encodings, and parser tools.
+- Formatting, schema ownership, and external-entity handling.
+- Schema validation and round-trip checks.

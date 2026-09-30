@@ -1,6 +1,6 @@
 # Coding Principles
 
-Use these principles when writing, reviewing, or refactoring code in this project.
+Use these principles when writing, reviewing, or refactoring code in this project. Existing project requirements and the user's requested scope determine the implementation. Avoid speculative features, configurability, abstractions, and unrelated cleanup.
 
 ## Core Principles
 
@@ -46,9 +46,9 @@ Reusable code captures a stable idea in a form that can serve more than one call
 1. Design utility functions around clear contracts, not current call-site accidents.
 2. Keep reusable code free of hidden global state and project-specific side effects unless those are part of its contract.
 3. Name reusable code after the concept it implements, not the first place it was used.
-4. Require tests for utility functions and shared modules.
+4. Test utility functions and shared modules where their contracts, behavior, and callers need regression protection.
 
-Reasoning: reuse proves that a boundary is meaningful. If code can be reused cleanly, it is usually better factored, easier to test, and less likely to duplicate behavior elsewhere.
+Reasoning: clean reuse is evidence that a boundary is meaningful. If code can be reused cleanly, it is usually better factored, easier to test, and less likely to duplicate behavior elsewhere.
 
 ### Separate Concerns Clearly
 
@@ -69,7 +69,7 @@ Code should express behavior. Config should express environment-specific choices
 1. Do not hard-code environment-specific values in source code.
 2. Do not put complex business logic into config files.
 3. Keep safe defaults in versioned config when useful, but keep secrets and private machine values out of Git.
-4. Avoid magic numbers. Numbers should be named constants in configuration or derived semantically at runtime from other authoritative values.
+4. Name non-obvious or shared values and derive related values from their authoritative source. Keep environment-specific thresholds in configuration.
 5. Validate config at startup or load time so failures are early and clear.
 6. Document required config keys, acceptable values, and where local overrides belong.
 
@@ -78,12 +78,10 @@ Reasoning: code and config change for different reasons. Keeping them distinct m
 ## Security Concerns
 
 1. Treat security-sensitive code as high risk.
-2. Prefer explicit allowlists over broad trust.
+2. Prefer explicit allowlists over broad trust at system boundaries. Respect established internal contracts without speculative defensive layers.
 3. Avoid logging secrets, credentials, tokens, raw auth headers, private keys, or sensitive payloads.
 4. Review authentication, authorization, filesystem, network, shell, and deserialization changes with extra care.
-5. Do not explicitly call out security fixes in commit messages, branch names, PR titles, or public changelog entries unless the user requests it.
-6. Ask the user for their security commit and disclosure patterns before committing security-sensitive changes.
-7. Document security commit patterns in `_private/` rather than tracked docs so public history does not shine a light on security patches.
+5. Follow the project's disclosure policy for sensitive findings. Keep raw sensitive evidence in private notes; routine fixes do not require a new disclosure interview.
 
 ## Privacy And Data Leaks
 
@@ -93,14 +91,15 @@ Reasoning: code and config change for different reasons. Keeping them distinct m
 4. Treat accidentally committed secrets as very high risk in public, shared, or open source repositories. Committed secrets should be assumed likely to become compromised secrets.
 5. Treat a committed secret as both an active credential incident and an information-exposure incident. Revoke or rotate it and remove public evidence immediately and in parallel; then audit, coordinate, rewrite reachable history, and verify both containment paths.
 6. Keep private notes, raw tool outputs, logs, exports, caches, and review artifacts in ignored underscore folders.
-7. Use the configured privacy preflight as a commit and publication gate. Run staged, push-range, history, and auxiliary-ref modes according to `agents/rules/privacy-and-publication.md`.
+7. Use the configured privacy preflight as a commit and publication gate. Run staged, push-range, history, and auxiliary-ref modes according to the [privacy rules](rules/privacy-and-publication.md).
 8. Do not treat a new `.gitignore` rule as remediation for content already tracked, committed, or retained by another ref.
 
-## TDD First
+## Verification
 
-1. Tests come first, then implementation.
-2. Utility functions must have tests.
-3. When changing behavior, add or update tests that define the expected behavior before relying on manual verification.
+- Choose checks that demonstrate the requested behavior and likely regressions. Add focused tests for behavior changes, bug fixes, and shared contracts where they provide useful confidence.
+- TDD is an available technique, not a required sequence for every edit. Documentation and low-impact mechanical changes can use direct checks rather than new tests that mirror the implementation.
+- Run relevant existing checks and address failures caused by the change. Broaden or repeat verification when changes, failures, or unresolved risks justify it.
+- Observe visual and interactive results in the app or a representative rendered surface. State what was checked and any remaining observation gaps.
 
 ## Performance Is User Experience
 
@@ -118,40 +117,27 @@ Performance is a requirement and a feature, not an afterthought.
 
 The agent should advise the user on how to keep the project's edit-review loop fast, observable, and reliable.
 
-1. Start simple and small. KISS first: use the smallest useful local workflow before adding infrastructure.
-2. Treat slow feedback loops as technical debt, product risk, and engineering risk. Fast feedback enables several focused good changes; slow feedback encourages one large, risky change.
-3. Prefer hot reload, direct app inspection, internal state inspection, screenshots, logs, and targeted tests when working on web pages, apps, and visual interfaces.
-4. Avoid relying only on slow continuous integration for debugging. A slow CI-only loop makes agentic workflows tedious, error-prone, and easy to abandon.
-5. When build or test loops get long, recommend improving the pipeline: parallel tasks, cached builds, affected-only tests, focused test commands, stable fixtures, or faster local previews.
-6. Make loop speed visible. Document useful commands, expected runtimes, ports, preview URLs, and observation tools.
-7. Treat loop improvements as enabling work, not gold plating, when they materially improve iteration speed and reliability.
+1. Treat slow feedback loops as technical debt, product risk, and engineering risk. Fast feedback enables several focused good changes; slow feedback encourages one large, risky change.
+2. Prefer hot reload, direct app inspection, internal state inspection, screenshots, logs, and targeted tests when working on web pages, apps, and visual interfaces.
+3. Avoid relying only on slow continuous integration for debugging. A slow CI-only loop makes agentic workflows tedious, error-prone, and easy to abandon.
+4. When build or test loops get long, recommend improving the pipeline: parallel tasks, cached builds, affected-only tests, focused test commands, stable fixtures, or faster local previews.
+5. Make loop speed visible. Document useful commands, expected runtimes, ports, preview URLs, and observation tools.
+6. Treat loop improvements as enabling work, not gold plating, when they materially improve iteration speed and reliability.
 
-## Legacy Support
+## Supported Targets
 
-This is a greenfield project by default. Legacy support must be scoped and clearly defined.
-
-1. Until a legacy target is defined, the project does not support legacy APIs, legacy code, compatibility fallbacks, shims, or dual runtime paths.
-2. Keep the project forward-looking by default.
-3. Legacy support is opt-in. Ask for the supported version floor or support time window before adding compatibility paths.
-4. Record the legacy support target in project documentation when it exists.
-5. If no target is defined, prefer current-generation code and remove old paths instead of keeping them reachable.
+For a new project, record the required runtime/platform floor when choosing its stack. Preserve established support in existing projects. Ask when a change needs an unresolved support decision; add or remove compatibility paths only within the agreed scope.
 
 ## Named Event Handlers And Callbacks
 
-Callbacks containing behavior must be named and defined at module scope when
-practical, or at stable component scope when a framework lifecycle requires it.
-Pass dependencies explicitly instead of relying on hidden closure capture.
+Extract complex, reused, or independently testable callback behavior into named
+functions at module scope when practical, or at stable component scope when a
+framework lifecycle requires it. Use the language and framework's idioms; inline
+callbacks are appropriate when their behavior and captured state are clear.
 
-Inline anonymous functions are acceptable only as trivial adapters that
-immediately delegate to a named function. They must not contain the callback's
-behavior.
-
-This is a deliberate agent-reliability rule. In larger agent-authored apps,
-anonymous closures and deeply nested callback structures have repeatedly led to
-hidden dependencies, duplicated behavior, cleanup mistakes, retained state,
-and code that is difficult to test or reuse. The named-callback default applies
-positive pressure toward flatter files, functional boundaries, explicit inputs,
-and observable lifecycles.
+In larger apps, deeply nested callbacks can hide dependencies, duplicate behavior,
+complicate cleanup, retain state, and make code difficult to test or reuse. Named
+callbacks help keep files flatter, dependencies explicit, and lifecycles observable.
 
 1. Flat control flow: named callbacks keep setup and orchestration readable instead of nesting behavior inside registrations, effects, timers, or animation loops.
 2. Explicit dependencies: inputs and captured values should be visible in parameters or an explicit context rather than inherited accidentally from a closure.
@@ -160,8 +146,8 @@ and observable lifecycles.
 5. Stable identity and cleanup: the same function reference can be passed to registration and removal APIs, making lifecycle symmetry mechanical and reviewable.
 6. Diagnostics: named functions appear clearly in stack traces, profiles, logs, and developer tools.
 7. Leak prevention: naming alone does not release resources. Every listener, timer, animation frame, subscription, observer, or external callback registration must also have explicit symmetric teardown or cancellation. Any intentionally captured values must be bounded and auditable.
-8. Code review rule: flag non-trivial inline callbacks and callbacks with hidden closure dependencies. Extract their behavior into a named function and verify the cleanup path.
-9. Thin-adapter exception: when a value genuinely must be captured at registration or schedule time, pass it through a minimal adapter such as `() => handleSnapTimeout(snapId)`. The adapter delegates; it does not own behavior.
+8. Code review: inspect complex callbacks and hidden closure dependencies. Extract behavior when that improves clarity, reuse, or testing, and verify the cleanup path.
+9. Thin adapters: when a value genuinely must be captured at registration or schedule time, pass it through a minimal adapter such as `() => handleSnapTimeout(snapId)`. The adapter delegates; it does not own behavior.
 
 Example:
 
@@ -194,8 +180,10 @@ clearTimeout(snapQuietTimer);
 
 ## File Length
 
-1. Warn when a file exceeds 500 lines.
-2. Require a cohesion review when a file exceeds 800 lines.
-3. Do not automatically fail a file for exceeding 1000 lines.
-4. Generated files, declarative data, and demonstrably cohesive modules may be exempt from length warnings and reviews.
-5. Treat file length as a forcing function for better coding patterns: modular code, separation of concerns, reusable units, object-oriented structure, mixins, or other appropriate decomposition.
+1. Treat file length as a signal to inspect cohesion. Split files when responsibilities or navigation justify it; line counts alone do not require refactoring.
+2. Generated files, declarative data, and demonstrably cohesive modules may remain long.
+3. Choose decomposition that fits the code: focused modules, separation of concerns, reusable functions, components, or other language-appropriate units.
+
+## Completion
+
+Finish the authorized task and its relevant verification before handing it back. A progress summary is not completion while requested work remains. Report concrete blockers and continue independent work when possible; keep updates and the final result concise and evidence-based.

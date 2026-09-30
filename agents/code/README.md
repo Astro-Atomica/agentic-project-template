@@ -1,24 +1,18 @@
-# Code Rules
+# Code Guidance
 
-Additional coding rules for specific languages, frameworks, runtimes, patterns, or situations.
-
-Use this folder when guidance is narrower than the shared principles in `agents/PRINCIPLES.md`.
+Read the guidance relevant to the current change. These files are customization points and focused references, not a required reading list. Follow [shared principles](../PRINCIPLES.md) and applicable project instructions.
 
 ## Layout
 
-1. `lang/` - language, framework, runtime, and markup-specific rules.
-2. `patterns/` - programming pattern and architecture-shape rules.
-3. `platform/` - operating system, device, console, store, CI, automation, and distribution-platform quirks, requirements, constraints, and guidelines.
+- [lang/](lang): language, framework, runtime, and markup rules. Includes small stubs such as [Python](lang/python.md), [TypeScript](lang/typescript.md), and [Godot](lang/godot.md), alongside substantive [CSS guidance](lang/css.md).
+- [platform/](platform): operating system, browser, device, store, and automation constraints. Includes customization stubs and existing platform guidance.
+- [env/](env): environment-specific agent behavior for [local development](env/local.md), [CI](env/ci.md), and [production](env/production.md).
+- [patterns/](patterns): focused architecture references. Use them when the actual problem warrants it.
 
-## Guidelines
+## Customize For The Project
 
-1. Keep rules focused on one language, framework, runtime, or situation.
-2. Put language, framework, runtime, and markup rules under `lang/`.
-3. Put reusable programming pattern rules under `patterns/`.
-4. Put operating system, device, console, store, CI, automation, and distribution-platform quirks, requirements, constraints, and guidelines under `platform/`.
-5. Prefer names that make scope obvious, such as `lang/typescript.md`, `lang/python.md`, `lang/svelte.md`, `patterns/state-machines.md`, `patterns/event-streams.md`, `platform/windows.md`, or `platform/github-actions.md`.
-6. Do not duplicate broad principles from `agents/PRINCIPLES.md`.
-7. Put general programming guidance in `agents/PRINCIPLES.md`, `agents/code/README.md`, or the most general file you can. Placing it in a language-, pattern-, or platform-specific file limits it to only that scope.
-8. Link related rules from the relevant project profile or workspace instructions when they apply.
-9. Keep examples small and directly tied to the rule.
-10. Do not put platform secrets, publishing credentials, private partner docs, account data, or NDA-restricted material in `platform/`.
+Replace a relevant stub's prompts with short, concrete instructions: supported targets, conventions, commands, constraints, and verification expectations. Unfilled prompts are topics to customize, not requirements or evidence that a target is supported. Keep useful stubs as future customization points; add or remove them to suit the project.
+
+Link applicable files from scoped `AGENTS.md` instructions or a project profile. Language files govern code conventions, platform files govern target constraints, and environment files govern where work runs; put shared rules in their authoritative home and resolve conflicting guidance explicitly.
+
+Keep examples small and reference shared principles rather than repeating them. Keep secrets, private paths, account data, and restricted partner material local. Date vendor-dependent constraints and link public documentation when recording them.

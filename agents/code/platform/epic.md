@@ -1,5 +1,9 @@
 # Epic Rules
 
-Use this file for Epic Games Store and Epic platform quirks, requirements, constraints, store guidelines, packaging notes, account integration notes, and compatibility notes.
+Customize agent behavior for this project's Epic Games Store or platform integration. No project-specific choices are set in this stub.
 
-Put general programming guidance in `agents/PRINCIPLES.md`, `agents/code/README.md`, or the most general file you can. Placing it in a platform-specific file limits it to only that platform.
+Replace the prompts below with the rules that apply:
+
+- Distribution targets and integration versions.
+- Packaging, achievements, account integration, and release constraints.
+- Integration tests and approved release checks.

@@ -1,5 +1,9 @@
 # Chrome Web Store Rules
 
-Use this file for Chrome Web Store and Chrome extension distribution quirks, requirements, constraints, review guidelines, packaging notes, permissions, and compatibility notes.
+Customize agent behavior for this project's Chrome extension distribution. No project-specific choices are set in this stub.
 
-Put general programming guidance in `agents/PRINCIPLES.md`, `agents/code/README.md`, or the most general file you can. Placing it in a platform-specific file limits it to only that platform.
+Replace the prompts below with the rules that apply:
+
+- Supported manifest format and release channels.
+- Packaging, permissions, review, and publication constraints.
+- Package validation and release approval checks.

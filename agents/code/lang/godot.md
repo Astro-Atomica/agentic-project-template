@@ -1,5 +1,9 @@
 # Godot Rules
 
-Use this file for Godot-specific coding, scene, asset, signal, and export rules.
+Customize agent behavior for this project's Godot code and assets. No project-specific choices are set in this stub.
 
-Put general programming guidance in `agents/PRINCIPLES.md`, `agents/code/README.md`, or the most general file you can. Placing it in a language- or pattern-specific file limits it to only that language or pattern.
+Replace the prompts below with the rules that apply:
+
+- Engine version, scripting language, and export targets.
+- Scene ownership, signals, resources, and asset conventions.
+- Editor, headless, and exported-build checks.

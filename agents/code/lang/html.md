@@ -1,5 +1,9 @@
 # HTML Rules
 
-Use this file for HTML-specific rules about semantics, accessibility, document structure, and markup conventions.
+Customize agent behavior for this project's HTML markup. No project-specific choices are set in this stub.
 
-Put general programming guidance in `agents/PRINCIPLES.md`, `agents/code/README.md`, or the most general file you can. Placing it in a language- or pattern-specific file limits it to only that language or pattern.
+Replace the prompts below with the rules that apply:
+
+- Document structure and supported rendering targets.
+- Semantic elements, forms, accessibility, and templating conventions.
+- Markup validation and representative browser checks.

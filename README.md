@@ -54,19 +54,15 @@ Code-review scratch work belongs in `_code_review/`, which is also ignored by Gi
 
 ## Agent Document Stack
 
-All agents should use the same document stack:
+Start at [AGENTS.md](AGENTS.md) and follow applicable scoped instructions, such as [workspace/AGENTS.md](workspace/AGENTS.md). The root entrypoint routes agents to coding principles, privacy rules, design guidance, and workflows according to the task. The [agents index](agents/README.md) is a document map, not a required reading list for every edit.
 
-1. [AGENTS.md](AGENTS.md)
-2. [agents/README.md](agents/README.md)
-3. [agents/PRINCIPLES.md](agents/PRINCIPLES.md)
-4. relevant files under [agents/rules](agents/rules), [agents/workflows](agents/workflows), [agents/skills](agents/skills), [agents/personas](agents/personas), or [agents/tools](agents/tools)
-5. project-specific notes in [workspace/AGENTS.md](workspace/AGENTS.md), if needed
+Keep the shared contract in one place. Client-specific files may provide minimal adapters, and native skills may use a tool-required discovery path; neither should duplicate the shared rules. See [skills and workflow notes](agents/skills/README.md) for the distinction between ordinary documents and installed skills.
 
-Do not create parallel platform-specific instruction files such as `CLAUDE.md`, `.cursorrules`, or `.windsurfrules` unless a tool absolutely requires a compatibility shim. If a shim is required, it should be tiny and point back to `AGENTS.md`.
+Use the small [code guidance stubs](agents/code/README.md) to customize agent behavior for the project's languages, platforms, and environments. Fill in only relevant project choices and link them from scoped instructions or a profile.
 
 ### Agent Compatibility
 
-The initial scaffold was developed in May–July 2026. Agent instruction discovery has evolved since then; the shared stack above is the repository's contract, not a claim that every client automatically imports every linked document.
+The initial scaffold was developed in May–July 2026. Agent instruction discovery has evolved since then; the shared entrypoint is the repository's convention, not a claim that every client automatically imports every linked document. Guidance is task-scoped so routine work can use the relevant context without loading the entire scaffold.
 
 See [Agent Compatibility](agents/rules/agent-compatibility.md) for vendor documentation checked on **2026-09-29**, setup notes, and the distinction between documented support and testing in this repository. Recheck those notes when changing clients or upgrading them.
 

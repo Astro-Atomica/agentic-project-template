@@ -1,5 +1,9 @@
 # Switch 2 Rules
 
-Use this file for Nintendo Switch 2-specific platform quirks, requirements, constraints, certification guidelines, performance notes, controller behavior, and compatibility notes.
+Customize agent behavior for this project's Nintendo Switch 2 work. No project-specific choices are set in this stub.
 
-Put general programming guidance in `agents/PRINCIPLES.md`, `agents/code/README.md`, or the most general file you can. Placing it in a platform-specific file limits it to only that platform.
+Replace the prompts below with the rules that apply:
+
+- Supported targets and approved toolchain versions.
+- Input, performance budgets, packaging, and certification constraints.
+- Device checks and approved release gates.

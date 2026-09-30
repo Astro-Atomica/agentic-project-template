@@ -1,5 +1,9 @@
 # TypeScript Rules
 
-Use this file for TypeScript-specific typing, module, API boundary, runtime validation, and testing rules.
+Customize agent behavior for this project's TypeScript code. No project-specific choices are set in this stub.
 
-Put general programming guidance in `agents/PRINCIPLES.md`, `agents/code/README.md`, or the most general file you can. Placing it in a language- or pattern-specific file limits it to only that language or pattern.
+Replace the prompts below with the rules that apply:
+
+- Runtime/compiler versions, module settings, and package tools.
+- Type strictness, shared contracts, and runtime validation conventions.
+- Type-check, lint, test, and build commands.

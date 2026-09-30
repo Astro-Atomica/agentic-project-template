@@ -4,4 +4,4 @@ Project-specific instructions for the active workspace go here.
 
 Until a project profile is selected, defer to the root [AGENTS.md](../AGENTS.md) and shared guidance in [agents](../agents).
 
-Do not create platform-specific agent instructions in this workspace. All agents should use the root `AGENTS.md` stack.
+Keep shared rules in the root entrypoint and `agents/`. Add only scoped project instructions here; any required client adapter should reference the shared source.

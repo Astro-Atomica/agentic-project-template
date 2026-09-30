@@ -1,5 +1,9 @@
 # Steam Rules
 
-Use this file for Steam-specific platform quirks, requirements, constraints, Steamworks guidelines, packaging notes, controller behavior, cloud behavior, and compatibility notes.
+Customize agent behavior for this project's Steam distribution or Steamworks integration. No project-specific choices are set in this stub.
 
-Put general programming guidance in `agents/PRINCIPLES.md`, `agents/code/README.md`, or the most general file you can. Placing it in a platform-specific file limits it to only that platform.
+Replace the prompts below with the rules that apply:
+
+- Supported operating systems and integration versions.
+- Packaging, controllers, achievements, cloud saves, and release constraints.
+- Integration, device, and release checks.

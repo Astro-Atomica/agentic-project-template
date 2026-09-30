@@ -8,7 +8,7 @@ Use this workflow to decide how agents should branch, stage, commit, merge, and 
 4. Preserve user work. Do not revert, overwrite, or stage unrelated changes unless the user explicitly asks.
 5. Keep changes small enough to review, test, and revert.
 6. Use the commit message templates in `agents/commit-templates/` when the project has selected one.
-7. Respect the startup decision about agent author-role attribution. If the user said no, that is a hard no.
+7. Follow the project's established commit identity, author-role attribution, and disclosure conventions. Do not invent attribution or require a new setup interview for a routine commit.
 8. Run `python agents/tools/privacy_preflight.py staged` as the commit gate.
 9. Run `python agents/tools/privacy_preflight.py push` before pushing unpublished commits. Supply `--upstream` when the branch has no configured upstream comparison.
 10. Before first public publication, a mirror, or a bundle, fetch and audit reachable remote history plus non-branch local refs using the commands in `agents/rules/privacy-and-publication.md`.
