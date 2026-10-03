@@ -24,6 +24,8 @@ _code_review/
 
 ## Review Stance
 
+For security-relevant surfaces, apply [security watchouts](../rules/security-watchouts.md). Trace input through storage and later rendering, and verify deployment artifacts and live transport separately from source review. Preserve failing cases as regression tests.
+
 Prioritize:
 
 - bugs

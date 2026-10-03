@@ -4,6 +4,8 @@ Shared operating context for coding agents and humans working with them.
 
 ## Contents
 
+- [security watchouts](rules/security-watchouts.md) - transport, injection, adversarial APIs, stored data, and deployment exposure checks with a reusable regression matrix
+
 - [PRINCIPLES.md](PRINCIPLES.md) - shared coding principles for project work
 - [DESIGN.md](DESIGN.md) - project visual identity for coding agents
 - [code](code) - language, platform, environment, and pattern guidance with small customization stubs

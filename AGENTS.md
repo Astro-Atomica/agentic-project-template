@@ -24,6 +24,7 @@ For the chosen client, consult the dated [agent compatibility notes](agents/rule
 - Keep the repo root small and predictable.
 - If a tool creates local clutter, add it to `.gitignore` rather than committing it.
 - Run the privacy preflight on staged content before committing and on unpublished commits before pushing.
+- For networked features, untrusted input, public assets, deployment changes, or security reviews, follow [security watchouts](agents/rules/security-watchouts.md). Convert applicable risks into repeatable tests and record unresolved findings; a passing secret scan is not an application security audit.
 - Treat browser captures, local-app state, cookies, storage state, traces, screenshots, videos, and exports as private trust-boundary material unless intentionally reviewed and approved for publication.
 - Use project profiles as additive starting points, not mandatory structure.
 - No legacy code and no legacy fallbacks unless legacy support has been explicitly opted into. On project startup, ask for the supported version floor or time window before adding compatibility paths.
