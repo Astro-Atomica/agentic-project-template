@@ -64,6 +64,18 @@ Private local folders are ignored by Git and should not appear on GitHub:
 - `_cache/` is for downloaded/generated caches, datasets, model caches, and embeddings and is ignored.
 - Dependency folders and generated artifacts are not architecture.
 
+## Build And Documentation Release Versioning
+
+By default, version builds and documentation releases by date and build number. Use `YYYY-MM-DD · Build N` for visible labels and `YYYY-MM-DD-build-N` for filenames, tags, and release identifiers; for example, `2026-10-05 · Build 1` and `2026-10-05-build-1`.
+
+- Use the build or documentation release date, with a consistent project timezone (UTC unless the project specifies another).
+- Start each independently released project or document at Build 1 and increment its build number for each subsequent release. Do not reset the counter when the date changes or reuse a released identifier.
+- Documentation shipped with a software build uses that build's date and number. Independently released documentation maintains its own counter.
+- Keep the identifier consistent across visible version labels, release notes, and artifact metadata. Record the source commit and validation status in release notes when applicable.
+- Ordinary working edits do not require a new release number. Assign the identifier when preparing a build or documentation release, and distinguish a prepared candidate from a published release.
+
+Record any explicitly selected alternative in project guidance. If a package manager or platform requires a different version format, retain the date and build number in release metadata and document the mapping.
+
 ## Tool Dotfolders
 
 Tool dotfolders may exist locally, but they should be ignored unless the project intentionally commits a small shared config file.

@@ -3,14 +3,14 @@
 Use this workflow to decide how agents should branch, stage, commit, merge, and hand off work.
 
 1. Inspect `git status --short --branch` before changing files.
-2. Default to `main` as the central branch unless the project explicitly defines another branch strategy.
-3. Identify the project branch strategy before creating commits or pull requests.
+2. Default to `origin/main`: remote `origin`, central branch `main`, and comparison base `origin/main`. Use another remote or branch when the user or project guidance explicitly specifies one.
+3. Verify the remote and current branch before creating commits or pushing. For an authorized push of local `main`, use `git push origin main`. If working on another branch, follow the project's merge or pull-request workflow to reach the default target.
 4. Preserve user work. Do not revert, overwrite, or stage unrelated changes unless the user explicitly asks.
 5. Keep changes small enough to review, test, and revert.
 6. Use the commit message templates in `agents/commit-templates/` when the project has selected one.
 7. Follow the project's established commit identity, author-role attribution, and disclosure conventions. Do not invent attribution or require a new setup interview for a routine commit.
 8. Run `python agents/tools/privacy_preflight.py staged` as the commit gate.
-9. Run `python agents/tools/privacy_preflight.py push` before pushing unpublished commits. Supply `--upstream` when the branch has no configured upstream comparison.
+9. Run `python agents/tools/privacy_preflight.py push --upstream origin/main` before pushing unpublished commits to the default target. Substitute the explicitly selected comparison base when using another branch strategy.
 10. Before first public publication, a mirror, or a bundle, fetch and audit reachable remote history plus non-branch local refs using the commands in `agents/rules/privacy-and-publication.md`.
 
 `.gitignore` does not remove tracked files, historical blobs, commit metadata, or auxiliary refs. Fix those Git objects deliberately rather than treating a new ignore rule as remediation.
