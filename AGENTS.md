@@ -61,6 +61,7 @@ For the chosen client, consult the dated [agent compatibility notes](agents/rule
 - Keep explanations concise and grounded in files changed.
 - When adding project-specific rules, place durable shared guidance under `agents/` and local implementation notes under `workspace/`.
 - When a user makes a design language request, update and maintain `agents/DESIGN.md` and supporting design-system docs under `agents/design/`; do not leave durable design intent only in chat or component code.
+- For lorem ipsum, placeholder text, or loading skeletons, consult the [placeholder guidance](agents/DESIGN.md#placeholder-text-and-loading-states) before choosing a presentation style.
 - For code reviews, use `_code_review/` for scratch notes and follow [agents/workflows/code-review.md](agents/workflows/code-review.md).
 - Track technical debt discovered while working on code in `_code_review/`, even outside formal code reviews. Document issues that should be tracked but not tackled in the current task.
 - Put logs in `_logs/`, ad hoc exports in `_exports/`, and raw tool outputs in `_tool_results/`.

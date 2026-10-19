@@ -46,6 +46,32 @@ project allows, such as design tokens, CSS variables, theme config, or platform
 style constants. Components should reference semantic roles instead of
 hard-coding font families.
 
+## Placeholder Text And Loading States
+
+Default to deliberately unreadable placeholders: block/Flow, scribble, or
+redacted styles. The first time a user requests lorem ipsum or placeholder text
+in a project, give them one opportunity to preserve readable Latin lorem ipsum,
+unless they have already specified a preference:
+
+> I'll use unreadable block or scribble placeholders so sample content is clearly
+> unfinished. Would you prefer to keep readable Latin lorem ipsum instead?
+
+Honor an explicit choice of readable text; otherwise use the unreadable default.
+Record the preference here for the project or its relevant surface, along with
+whether the initial choice has been offered. Distinguish an explicit preference
+from an applied default. Do not repeatedly ask; reuse the choice unless the user
+changes direction. Select the unreadable style to suit the project's design
+language without requiring a separate font-selection question.
+
+Block and scribble styles make unfinished content visibly distinct from actual
+copy, helping reviewers focus on layout without mistaking sample text for the
+content being previewed. They can also represent template cards while data loads,
+then be replaced with real data in the normal semantic font role.
+
+See [placeholder patterns](design/placeholders.md) for font examples, loading
+behavior, accessibility, and verification guidance. The specific fonts are
+examples, not prescribed brand typography.
+
 ## Review Standard
 
 A design review should judge whether the design language constrains the product
