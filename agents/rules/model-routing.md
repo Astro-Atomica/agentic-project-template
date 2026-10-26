@@ -6,22 +6,27 @@ Use the [model routing workflow](../workflows/model-routing.md) to learn gradual
 
 ## Model Catalog
 
-**Catalog edition: 2026-10-01. Vendor sources checked: 2026-09-29 (America/Los_Angeles).**
+**Catalog edition: 2026-10-26. Vendor sources checked: 2026-09-29, except GPT-6.1 Terra and Claude Haiku 5.5 checked 2026-10-26 (America/Los_Angeles).**
 
 This starting list covers selected general-purpose and agent models from the official [OpenAI][openai-models] and [Anthropic][anthropic-models] catalogs. It is not exhaustive. A vendor listing does not establish access through the project's account, client, region, or delegation tools. Project access dates are intentionally blank; add them only after checking the actual interface. Add other providers or local models when relevant.
 
 | Provider | Model | Vendor model ID | Source | Project access checked |
 | --- | --- | --- | --- | --- |
 | OpenAI | GPT-6.1 Sol | `gpt-6.1-sol` | [OpenAI][openai-models] | |
+| OpenAI | GPT-6.1 Terra | `gpt-6.1-terra` | [OpenAI][terra-model] | |
 | OpenAI | GPT-6 Astra | `gpt-6-astra` | [OpenAI][openai-models] | |
 | OpenAI | GPT-6 Sol | `gpt-6-sol` | [OpenAI][openai-models] | |
 | OpenAI | GPT-6 Luna | `gpt-6-luna` | [OpenAI][openai-models] | |
 | Anthropic | Claude Fable 5.1 | `claude-fable-5-1` | [Anthropic][anthropic-models] | |
 | Anthropic | Claude Opus 5.5 | `claude-opus-5-5` | [Anthropic][anthropic-models] | |
 | Anthropic | Claude Sonnet 5.5 | `claude-sonnet-5-5` | [Anthropic][anthropic-models] | |
-| Anthropic | Claude Haiku 4.5 | `claude-haiku-4-5-20251001` | [Anthropic][anthropic-models] | |
+| Anthropic | Claude Haiku 5.5 | `claude-haiku-5-5` | [Anthropic][haiku-model] | |
 
 Vendor IDs above use the documented OpenAI/Codex or direct vendor API spelling. Managed services and agent clients may use different aliases. Record the exact selectable ID and supported effort controls when establishing a route.
+
+OpenAI positions GPT-6.1 Terra for visual reasoning, computer use, and writing, with improved coding over GPT-5.6 Terra; it still recommends Sol or Astra for the most complex coding tasks. The [launch announcement][terra-launch] lists API access and availability in ChatGPT Work and Codex for Plus, Pro, Enterprise, and Edu. These are vendor claims and availability statements, not project benchmarks or verified project access.
+
+Anthropic positions Claude Haiku 5.5 for high-volume, narrowly scoped work such as summaries, classification, and coding subagents, while recommending Sonnet 5.5 or Opus 5.5 for complex agentic coding. Its [launch announcement][haiku-launch] lists availability on the Claude Platform, AWS, Google Cloud, and Microsoft Azure. These are vendor statements, not project routing decisions or verified project access.
 
 ## Project Routing Decisions
 
@@ -64,7 +69,7 @@ OpenAI describes GPT-6.1 Sol as offering near-Astra performance at lower cost an
 
 ## Maintenance
 
-Check project access before routing. Treat catalog checks and routing judgments as **STALE** once they are 30 days old, even if their status has not been edited. The latest vendor checks become stale on **2026-10-29**; this date does not validate project access or any routing decision.
+Check project access before routing. Treat catalog checks and routing judgments as **STALE** once they are 30 days old, even if their status has not been edited. The 2026-09-29 vendor checks become stale on **2026-10-29**; the GPT-6.1 Terra and Claude Haiku 5.5 checks become stale on **2026-11-25**. These dates do not validate project access or any routing decision.
 
 During active project work, refresh the catalog and review established profiles and routes when the 30-day review is due, using a high-tier agent to review task assignments, observations, and volunteered feedback. Keep routine maintenance quiet; do not repeatedly ask for ratings or send reminders. Update dates only after an actual review. Recheck aliases, availability, supported controls, and retirement notices when changing clients, accounts, or sessions. A stale user preference remains recorded as user intent; its age does not authorize silently replacing it or presenting old evidence as current.
 
@@ -75,4 +80,8 @@ Keep private account and deployment details local. This is a maintenance convent
 [openai-models]: https://learn.chatgpt.com/docs/models
 [anthropic-models]: https://platform.claude.com/docs/en/models/overview
 [sol-model]: https://developers.openai.com/api/docs/models/gpt-6.1-sol
+[terra-model]: https://developers.openai.com/api/docs/models/gpt-6.1-terra
+[terra-launch]: https://openai.com/index/introducing-gpt-6-1-terra/
+[haiku-model]: https://platform.claude.com/docs/en/models/haiku-5-5/overview
+[haiku-launch]: https://www.anthropic.com/claude-haiku-5-5
 [model-selection]: https://developers.openai.com/api/docs/guides/model-selection

@@ -4,7 +4,7 @@ Keep dated public token prices here to support [model routing](model-routing.md)
 
 ## Cached Prices
 
-Rates are **USD per million tokens**, for direct-provider APIs with standard global processing. OpenAI base rates apply to input ≤272K; longer requests use the adjustments below. Current model IDs are in the [routing catalog](model-routing.md#model-catalog); previous model IDs are documented in the linked specs below.
+Rates are **USD per million tokens**, for direct-provider APIs with standard global processing. OpenAI base rates apply to input ≤272K; longer requests use the adjustments below. Haiku 5.5 has separate rows for prompts ≤100K and >100K tokens. Current model IDs are in the [routing catalog](model-routing.md#model-catalog); previous model IDs are documented in the linked specs below.
 
 Context values use **API / DESK / CLI** order. `?` means unverified; `*` marks cached client metadata rather than an active-session limit. Combine DESK and CLI into one value only after verifying they agree; keep three values when they differ or either remains unknown.
 
@@ -13,17 +13,21 @@ Context values use **API / DESK / CLI** order. `?` means unverified; `*` marks c
 | Model | API effort settings | Context (API / DESK / CLI) | Input | Cache read / write | Output |
 | --- | --- | --- | --- | --- | --- |
 | GPT-6.1 Sol | low, medium, high, xhigh, max | 1.05M / 272K* / ? | $2.00 | $0.10 / $2.50 | $10.00 |
+| GPT-6.1 Terra | none, low, medium, high, xhigh, max | 1.05M / ? / ? | $1.00 | $0.05 / $1.25 (30m), $2.50 (12h) | $5.00 |
 | GPT-6 Astra | low, medium, high, xhigh, max | 1.05M / 272K* / ? | $10.00 | $1.00 / $12.50 | $50.00 |
 | GPT-6 Sol | none, low, medium, high, xhigh, max | 1.05M / 272K* / ? | $2.00 | $0.20 / $2.50 | $10.00 |
 | GPT-6 Luna | none, low, medium, high, xhigh, max | 1.05M / 272K* / ? | $0.10 | $0.01 / $0.125 | $0.50 |
 | Claude Fable 5.1 | low, medium, high, xhigh, max | 1M / ? / ? | $10.00 | $0.25 / $12.50 (5m), $20.00 (1h) | $50.00 |
 | Claude Opus 5.5 | low, medium, high, xhigh, max | 1M / ? / ? | $4.00 | $0.20 / $5.00 (5m), $8.00 (1h) | $20.00 |
-| Claude Sonnet 5.5 | low, medium, high, xhigh, max | 1M / ? / ? | $2.00 | $0.20 / $2.50 (5m), $4.00 (1h) | $10.00 |
-| Claude Haiku 4.5 | No named effort tiers; thinking budget | 200K / ? / ? | $1.00 | $0.10 / $1.25 (5m), $2.00 (1h) | $5.00 |
+| Claude Sonnet 5.5 | low, medium, high, xhigh, max | 1M / ? / ? | $2.00 | $0.10 / $2.50 (5m), $4.00 (1h) | $10.00 |
+| Claude Haiku 5.5 (low context) | low, medium, high, xhigh, max | 100K / ? / ? | $0.10 | $0.01 / $0.125 (5m), $0.20 (1h) | $0.50 |
+| Claude Haiku 5.5 | low, medium, high, xhigh, max | 1M / ? / ? | $0.50 | $0.05 / $0.625 (5m), $1.00 (1h) | $2.50 |
+
+For Haiku 5.5, 100K marks the cheaper tier's prompt limit; the model's total context capacity is 1M in both tiers. Prompts over 100K tokens use the higher rates. Desktop and CLI limits remain unverified.
 
 ### Last Generation
 
-Retain selected preceding releases for cost comparisons and existing project routes. These are their currently published prices, rather than historical launch prices. Haiku 4.5 remains in the current table as the latest Haiku release.
+Retain selected preceding releases for cost comparisons and existing project routes. These are published prices as of the recorded checks, rather than historical launch prices. Haiku 4.5 is retained here following the Haiku 5.5 release.
 
 | Model | API effort settings | Context (API / DESK / CLI) | Input | Cache read / write | Output |
 | --- | --- | --- | --- | --- | --- |
@@ -33,22 +37,24 @@ Retain selected preceding releases for cost comparisons and existing project rou
 | Claude Fable 5 | low, medium, high, xhigh, max | 1M / ? / ? | $10.00 | $1.00 / $12.50 (5m), $20.00 (1h) | $50.00 |
 | Claude Opus 5 | low, medium, high, xhigh, max | 1M / ? / ? | $5.00 | $0.50 / $6.25 (5m), $10.00 (1h) | $25.00 |
 | Claude Sonnet 5 | low, medium, high, xhigh, max | 1M / ? / ? | $2.00 | $0.20 / $2.50 (5m), $4.00 (1h) | $10.00 |
+| Claude Haiku 4.5 | No named effort tiers; thinking budget | 200K / ? / ? | $1.00 | $0.10 / $1.25 (5m), $2.00 (1h) | $5.00 |
 
-**Last checked: 2026-09-29 (America/Los_Angeles).** Treat these facts as stale after 30 days.
+**Last checked: 2026-09-29, with partial updates on 2026-10-26 (America/Los_Angeles).** Treat facts as stale after 30 days from their check date. The 2026-10-26 checks cover GPT-6.1 Terra and Claude Haiku 5.5 API prices, context windows, effort settings, and pricing conditions, plus Sonnet 5.5 prices. Sonnet's context and effort settings retain their 2026-09-29 check date. Other rows retain their earlier dates; desktop and CLI limits for the new models remain unverified.
 
-Sources: [OpenAI pricing][openai-pricing]; model specs for [Sol 6.1][sol-6-1], [Astra][astra], [Sol 6][sol-6], and [Luna][luna]; Anthropic [pricing][anthropic-pricing], [model specs][anthropic-models], and [effort controls][anthropic-effort].
+Sources: [OpenAI pricing][openai-pricing]; model specs for [Sol 6.1][sol-6-1], [Terra 6.1][terra-6-1], [Astra][astra], [Sol 6][sol-6], and [Luna][luna]; Anthropic [pricing][anthropic-pricing], [model specs][anthropic-models], [Haiku 5.5 specs][haiku-5-5], and [effort controls][anthropic-effort].
 
-Previous-generation specs: GPT-5.6 [Sol][sol-5-6], [Terra][terra-5-6], and [Luna][luna-5-6]; Claude [Fable 5][fable-5], [Opus 5][opus-5], and [Sonnet 5][sonnet-5].
+Previous-generation specs: GPT-5.6 [Sol][sol-5-6], [Terra][terra-5-6], and [Luna][luna-5-6]; Claude [Fable 5][fable-5], [Opus 5][opus-5], [Sonnet 5][sonnet-5], and [Haiku 4.5][haiku-4-5] (`claude-haiku-4-5-20251001`).
 
 Client context evidence: the starred DESK values were observed in local Codex model metadata during this template review on 2026-09-29. They are provisional observations, not universal desktop limits. CLI limits and Claude desktop limits remain unverified. Record the exact client, version, configuration, source, and check date below the tables when verifying or replacing a value; keep account-specific details private. Codex supports configurable [context and compaction limits][codex-context-config].
 
-Effort settings describe published API controls, not project rankings or recommended routes. Agent clients may expose a different set, including client-specific levels such as `ultra`; record the actual controls in agent profiles. API context windows include input and output; client working budgets and compaction thresholds can be smaller and should be labeled separately. The 272K pricing boundary is not a model's total context capacity. Haiku uses an extended-thinking token budget rather than named effort tiers.
+Effort settings describe published API controls, not project rankings or recommended routes. Agent clients may expose a different set, including client-specific levels such as `ultra`; record the actual controls in agent profiles. API context windows include input and output; client working budgets and compaction thresholds can be smaller and should be labeled separately. Pricing thresholds are not total context capacities. Haiku 4.5 uses an extended-thinking token budget rather than named effort tiers; Haiku 5.5 supports five effort levels and defaults to `medium`.
 
 ## Published Pricing Conditions
 
 - For the listed OpenAI models, input >272K doubles input and cache rates and multiplies output rates by 1.5 for the full request. Fast rates are 2x Standard; Batch and Flex are 50% lower. Astra Ultrafast is 6x Standard. Regional processing and FedRAMP endpoints add 10%. Apply the context adjustment before processing modifiers. See [OpenAI pricing][openai-pricing] for availability and details.
 - GPT-5.6 Sol's listed promotional prices are published as available at least through 2026-11-21. Recheck this condition during a refresh rather than assuming the promotion continues.
-- Anthropic cache writes have separate 5-minute and 1-hour rates as shown. Its 4.6-and-later models have no long-context premium within their supported window. Batch token rates are 50% lower; US-only inference on supported models adds 10%. Opus 5.5 Fast uses $8 input and $40 output; Opus 5 Fast uses $10 input and $50 output per million tokens before cache and geography modifiers. See [Anthropic pricing][anthropic-pricing] for combinations and availability.
+- Anthropic cache writes have separate 5-minute and 1-hour rates as shown. Its 4.6-and-later models except Haiku 5.5 have no long-context premium within their supported window. Batch token rates are 50% lower; US-only inference on supported models adds 10%. Opus 5.5 Fast uses $8 input and $40 output; Opus 5 Fast uses $10 input and $50 output per million tokens before cache and geography modifiers. See [Anthropic pricing][anthropic-pricing] for combinations and availability.
+- Haiku 5.5's >100K prompt tier applies to the whole request, including output. Count all input tokens, including cache reads and writes, toward the threshold. Each request is priced independently; earlier requests are not repriced. Batch discounts and US-only inference premiums also apply to the higher tier.
 - Tool charges, taxes, private discounts, and subscription-credit rates are outside these base API rows. Match estimates to the actual interface and published billing mode.
 
 ## Refresh And Use
@@ -66,6 +72,7 @@ Keep this shared cache limited to public pricing facts and source links. Private
 [openai-pricing]: https://developers.openai.com/api/docs/pricing
 [anthropic-pricing]: https://platform.claude.com/docs/en/about-claude/pricing
 [sol-6-1]: https://developers.openai.com/api/docs/models/gpt-6.1-sol
+[terra-6-1]: https://developers.openai.com/api/docs/models/gpt-6.1-terra
 [astra]: https://developers.openai.com/api/docs/models/gpt-6-astra
 [sol-6]: https://developers.openai.com/api/docs/models/gpt-6-sol
 [luna]: https://developers.openai.com/api/docs/models/gpt-6-luna
@@ -77,4 +84,6 @@ Keep this shared cache limited to public pricing facts and source links. Private
 [fable-5]: https://platform.claude.com/docs/en/models/fable-5/overview
 [opus-5]: https://platform.claude.com/docs/en/models/opus-5/overview
 [sonnet-5]: https://platform.claude.com/docs/en/models/sonnet-5/overview
+[haiku-5-5]: https://platform.claude.com/docs/en/models/haiku-5-5/overview
+[haiku-4-5]: https://platform.claude.com/docs/en/models/haiku-4-5/overview
 [codex-context-config]: https://learn.chatgpt.com/docs/config-file/config-reference
