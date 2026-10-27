@@ -5,7 +5,7 @@ Use this when a request establishes or changes the project's visual language. Ke
 1. Inspect the user's direction, existing screens, brand material, and implementation tokens. Clarify only decisions that block useful progress.
 2. Record concrete choices and their intent in DESIGN.md: values, semantic roles, usage, and justified exceptions. Keep unknown choices absent. A local styling change needs a global rule only when it establishes a reusable decision.
 3. Follow the [current DESIGN.md specification](https://github.com/google-labs-code/design.md/blob/main/docs/spec.md) used by the scaffold: optional YAML front matter for exact tokens and Markdown rationale. Keep present sections in order: Overview, Colors, Typography, Layout, Elevation & Depth, Shapes, Components, Do's and Don'ts. Omit undecided sections and token groups; update `omitted` when adding approved values. Preserve existing project decisions and any intentional extensions.
-4. Inspect representative screens or rendered states against the documented language and accessibility requirements. Use existing stories, fixtures, or direct views when available.
+4. Inspect representative screens/states against the documented language and accessibility requirements. For web projects, use the [web readiness checklist](web-readiness.md), including its post-prototype test sitemap. Reuse existing stories, fixtures, or direct views.
 5. Update durable decisions and summarize what changed, what was verified, and what remains undecided.
 
 Apply decisions through shared tokens or the framework's conventions. The upstream format is currently alpha; check changes to the specification when adopting a new validator version.

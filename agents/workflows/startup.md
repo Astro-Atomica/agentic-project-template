@@ -12,6 +12,9 @@ Use this once when adapting the scaffold into a new project. Ordinary tasks use 
 
 Preserve user work, unknown untracked files, `_private/` content, and review/process records. Clean up only known disposable output owned by the task. Add project-specific guidance when there is a concrete need, rather than filling every optional folder.
 
+For websites/apps, use the [web readiness checklist](web-readiness.md) at the
+prototype and release checkpoints. Reuse recorded product decisions.
+
 ## Local Resource Boundaries
 
 - Use the project's configured ports. If none are specified, agent-started preview servers and temporary services default to `localhost:8100` or higher; check availability before starting one.

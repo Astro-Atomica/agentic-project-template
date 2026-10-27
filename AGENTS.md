@@ -28,6 +28,8 @@ For the chosen client, consult the dated [agent compatibility notes](agents/rule
 - For networked features, untrusted input, public assets, deployment changes, or security reviews, follow [security watchouts](agents/rules/security-watchouts.md). Convert applicable risks into repeatable tests and record unresolved findings; a passing secret scan is not an application security audit.
 - Treat browser captures, local-app state, cookies, storage state, traces, screenshots, videos, and exports as private trust-boundary material unless intentionally reviewed and approved for publication.
 - Use project profiles as additive starting points, not mandatory structure.
+- For website/web-app work, use the task-scoped [web readiness checklist](agents/workflows/web-readiness.md); load its detailed guidance only for applicable work.
+- For random choices, use an indexed option array and an executed RNG program to select indices; never generate random numbers through LLM output. Follow the [random-selection rules](agents/PRINCIPLES.md#random-choices-must-use-a-program).
 - By default, version builds and documentation releases by date and build number. Follow the [release versioning convention](agents/rules/repo-conventions.md#build-and-documentation-release-versioning) unless the project explicitly selects another scheme.
 - No legacy code and no legacy fallbacks unless legacy support has been explicitly opted into. On project startup, ask for the supported version floor or time window before adding compatibility paths.
 

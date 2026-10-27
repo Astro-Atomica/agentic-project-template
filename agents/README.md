@@ -15,6 +15,7 @@ Shared operating context for coding agents and humans working with them.
 - [model routing](rules/model-routing.md) - dated model catalog, a [published pricing cache](rules/model-pricing-cache.md), and empty profile/route tables, with a [routing workflow](workflows/model-routing.md) for learning preferences gradually
 - [privacy-policy.json](privacy-policy.json) - project publication allowlists and sensitive-pattern policy
 - [workflows](workflows) - repeatable task procedures
+- [web readiness](workflows/web-readiness.md) - task-scoped routing for website/app quality, prototype review, and release checks
 - [skills](skills) - reusable capability notes and native skill setup guidance
 - [personas](personas) - optional specialist roles
 - [tools](tools) - reusable repo-local tools, scripts, and command wrappers for agents

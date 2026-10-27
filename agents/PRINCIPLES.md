@@ -75,6 +75,30 @@ Code should express behavior. Config should express environment-specific choices
 
 Reasoning: code and config change for different reasons. Keeping them distinct makes deployments safer, tests clearer, and local customization less likely to leak into shared source.
 
+## Random Choices Must Use A Program
+
+For any random choice, first define an indexed array of eligible options, then
+execute an RNG program to select the index and retrieve that option. This applies
+to test sampling, randomized ordering, fixtures, and other randomized decisions.
+Do not use LLM output to generate random numbers, indices, seeds, or selections,
+and do not describe an arbitrary model-picked value as random.
+This governs agent-made random selections; it does not require replacing an
+application's existing RNG algorithms or implementing custom cryptography.
+
+- Establish the candidate array and eligibility rules before drawing. Arrays may
+  be built deterministically in code from explicit ranges or other source data.
+- Use a runtime RNG to select valid array indices. Define whether repeated draws
+  are allowed; use sampling without replacement when unique choices are needed.
+  Default to equal selection probability unless weighting is intentional and
+  documented. Do not redraw merely because the result is inconvenient.
+- For reproducible tests, use a user-specified seed or one obtained from a program's
+  RNG, then record the seed, RNG implementation, candidate array/order or its
+  reproducible definition, and selected indices/options in ignored test evidence.
+- Keep deliberate boundary cases separate from random samples. If RNG execution
+  is unavailable, report that limitation rather than inventing random output.
+- Use a cryptographically secure RNG when randomness protects security; do not
+  log secret draws or sensitive RNG state as ordinary test evidence.
+
 ## Security Concerns
 
 1. Treat security-sensitive code as high risk.

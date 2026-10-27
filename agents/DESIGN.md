@@ -72,6 +72,87 @@ See [placeholder patterns](design/placeholders.md) for font examples, loading
 behavior, accessibility, and verification guidance. The specific fonts are
 examples, not prescribed brand typography.
 
+## Put the Page's Primary Value Above the Fold
+
+The initial visible viewport must communicate or deliver the page's primary
+value before the user scrolls. Choose that value according to the page's purpose
+and the user's task; document it for each page type.
+
+| Page purpose | Value to prioritize in the initial viewport |
+| --- | --- |
+| Sales or conversion | A clear offer/benefit and a meaningful primary call to action (CTA) |
+| Web app or tool | The primary task, useful controls, current work, or an actionable result |
+| Dashboard or status | The most useful summary, current status, or information needing attention |
+| Documentation, reference, or content | Clear topic/context and useful information or a direct way to find the answer |
+| Search or browse | Search/filter controls and useful results or categories |
+
+A CTA is appropriate when it serves that purpose; it is not a universal
+requirement for every site or app. Avoid letting decorative heroes, oversized
+branding, or introductory copy push the actual value out of the initial view.
+
+The fold depends on viewport size and browser UI. Verify representative desktop
+and mobile initial views, accounting for persistent navigation and overlays.
+Preserve readable text, accessible controls, and natural scrolling rather than
+shrinking or crowding the interface to fit everything above an arbitrary line.
+Use the post-prototype test sitemap to inspect this across page types.
+
+## Responsive Design Across Screen Sizes
+
+Keep the site or app useful across a wide range of viewport sizes as devices and
+usage patterns change. Prioritize currently popular mobile sizes for the intended
+audience, then randomly sample other sizes within the supported range and rate
+how well users can complete the page's primary task. Include tablet and desktop
+layouts where supported. Choose layout breakpoints where content needs to adapt,
+rather than relying only on a fixed list of device models.
+
+Follow the [responsive review guidance](design/responsive-design.md) for target
+selection, reproducible sampling, usefulness ratings, and regression checks.
+
+## Keep Important Actions Accessible While Scrolling
+
+**Sales sites and sales pages:** On long mobile sales pages, consider a sticky
+primary CTA such as "Buy now", "Book an appointment", or "Start free trial".
+Keep it available as visitors scroll through the offer so they can act without
+searching for the original button. Use a clear label and preserve any context
+needed to understand the action. Add persistence where it helps the purchase or
+conversion flow; a sticky button is not mandatory on every sales page.
+
+**Other sites and apps:** Keep important actions or controls conveniently
+accessible when doing so helps the user's current task. Choose the behavior and
+placement to suit the experience; persistent controls are optional, and some
+pages need none. Avoid imposing a sales-style CTA or bottom bar on every app.
+
+In either case, persistent UI must not obscure content, focused fields, other
+controls, or the final portion of the page. Account for small viewports, safe
+areas, zoom, and the on-screen keyboard. Verify the actual scrolling and
+interaction behavior as part of the responsive review.
+
+## Load Quickly, Show Progress, Keep Layouts Stable
+
+- Aim to deliver useful above-the-fold content within **one second on
+  representative devices and networks**.
+- Render progressively, prioritize primary interactions, and defer nonessential
+  assets and below-the-fold work.
+- Show honest loading feedback and reserve space for incoming content to prevent
+  layout shifts.
+- Measure before optimizing. Once the experience is consistently fast and
+  responsive, pursue further gains only when the user benefit justifies the
+  complexity and maintenance cost.
+
+Define the useful-content milestone and representative test conditions for the
+project. Check initial loads and subsequent navigation, recording device/network
+conditions and cold versus warm caches. Inspect responsiveness and layout
+stability while assets load; a quick skeleton alone does not satisfy the
+useful-content goal. Prioritize measured bottlenecks over speculative tuning.
+
+## Web Readiness
+
+Use the [web readiness checklist](workflows/web-readiness.md) for page metadata,
+icons, alt-text timing, error/recovery states, forms, confirmations, policy pages,
+contact details, analytics, and the required post-prototype test sitemap.
+Supporting documents define those requirements; keep project-specific visual
+choices here and avoid copying the checklist into this file.
+
 ## Review Standard
 
 A design review should judge whether the design language constrains the product
